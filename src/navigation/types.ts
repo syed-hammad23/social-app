@@ -1,4 +1,4 @@
-import { NavigatorScreenParams } from "@react-navigation/native";
+import {NavigatorScreenParams} from '@react-navigation/native';
 
 /**
  * 🔐 AUTH STACK TYPES
@@ -24,6 +24,7 @@ export type MainStackParamList = {
   Tabs: NavigatorScreenParams<BottomTabParamList>;
   Profile: undefined;
   Settings: undefined;
+  Map: undefined; // 👈 add this
 };
 
 /**
