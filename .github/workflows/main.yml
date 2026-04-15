@@ -1,0 +1,26 @@
+name:  Block Inline Styles
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  check-inline-style:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🔍 Scan for inline styles
+        run: |
+          echo "Checking for inline styles..."
+
+          if grep -r "style={{" ./src; then
+            echo "❌ Inline styles are not allowed. Please move styles to StyleSheet."
+            exit 1
+          else
+            echo "✅ No inline styles found."
+          fi
