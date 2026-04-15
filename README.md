@@ -1,83 +1,211 @@
-<<<<<<< HEAD
-# social-app
-=======
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# 📱 Social App (React Native)
 
-# Getting Started
+A scalable, production-ready React Native boilerplate built with **TypeScript**, **Zustand**, and a clean **navigation architecture**.
+Includes reusable components, global state management, CI/CD enforcement, and modern best practices.
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+---
 
-## Step 1: Start the Metro Server
+## 🚀 Features
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+* ⚛️ React Native 0.74+
+* 🧠 Zustand (lightweight global state management)
+* 🧭 Fully typed Navigation (Auth + Main + Tabs)
+* 🔐 Authentication flow (Login / Register)
+* 🌍 Environment configuration (`.env`)
+* 🎨 Centralized theme system (colors)
+* 🧩 Reusable UI components:
 
-To start Metro, run the following command from the _root_ of your React Native project:
+  * Button
+  * Input (with validation + search)
+  * Header
+  * Loader
+  * Toast (global)
+  * Bottom Sheet (global)
+* ⚡ CI/CD pipeline (blocks inline styles)
+* 📁 Scalable folder structure (industry standard)
+
+---
+
+## 📂 Project Structure
+
+```
+src/
+├── components/
+│   ├── Button/
+│   ├── Input/
+│   ├── Header/
+│   ├── Loader/
+│   ├── Toast/
+│   ├── BottomSheet/
+│
+├── navigation/
+│   ├── types.ts
+│   ├── AppNavigator.tsx
+│   ├── AuthStack.tsx
+│   ├── MainStack.tsx
+│   ├── BottomTabs.tsx
+│
+├── screens/
+│   ├── auth/
+│   ├── home/
+│   ├── profile/
+│   ├── settings/
+│
+├── store/
+│   ├── useAuthStore.ts
+│   ├── useToastStore.ts
+│   ├── useBottomSheetStore.ts
+│
+├── services/
+│   └── api.ts
+│
+├── theme/
+│   └── colors.ts
+│
+├── types/
+│   └── env.d.ts
+```
+
+---
+
+## ⚙️ Installation
 
 ```bash
-# using npm
+# Clone repo
+git clone https://github.com/syed-hammad23/social-app.git
+
+# Install dependencies
+npm install
+
+# Start Metro
+npx react-native start
+
+# Run Android
+npx react-native run-android
+```
+
+---
+
+## 🌍 Environment Setup
+
+Create a `.env` file in root:
+
+```env
+API_URL=https://your-api.com/api
+APP_NAME=SocialApp
+```
+
+---
+
+## 🧠 State Management (Zustand)
+
+Global state is handled using Zustand:
+
+* `useAuthStore` → authentication
+* `useToastStore` → global toast notifications
+* `useBottomSheetStore` → global bottom sheet
+
+---
+
+## 🧭 Navigation Architecture
+
+* **AuthStack** → Login / Register
+* **MainStack** → Protected screens
+* **BottomTabs** → Home / Profile / Settings
+
+All navigation is fully typed via:
+
+```
+src/navigation/types.ts
+```
+
+---
+
+## 🎨 UI System
+
+Reusable components:
+
+* **Button** → loading + disabled states
+* **Input** → validation + search support
+* **Header** → back + actions
+* **Loader** → inline + fullscreen
+* **Toast** → global notifications
+* **BottomSheet** → global modal system
+
+---
+
+## 🍞 Toast Usage
+
+```ts
+import { useToastStore } from "@store/useToastStore";
+
+useToastStore.getState().showToast("Success!", "success");
+```
+
+---
+
+## 📦 Bottom Sheet Usage
+
+```ts
+import { useBottomSheetStore } from "@store/useBottomSheetStore";
+
+useBottomSheetStore.getState().openSheet(
+  <View>
+    <Text>Hello Bottom Sheet</Text>
+  </View>
+);
+```
+
+---
+
+## 🚫 CI/CD Rules
+
+GitHub Actions workflow enforces:
+
+* ❌ No inline styles allowed (`style={{ ... }}`)
+* ✅ Must use `StyleSheet.create()`
+
+If violated:
+
+* Build fails
+* PR merge is blocked
+
+---
+
+## 🧪 Scripts
+
+```bash
 npm start
-
-# OR using Yarn
-yarn start
-```
-
-## Step 2: Start your Application
-
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
-
-### For Android
-
-```bash
-# using npm
 npm run android
-
-# OR using Yarn
-yarn android
-```
-
-### For iOS
-
-```bash
-# using npm
 npm run ios
-
-# OR using Yarn
-yarn ios
 ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+---
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+## 🧠 Best Practices Followed
 
-## Step 3: Modifying your App
+* TypeScript strict mode
+* Centralized theme system
+* Clean architecture (separation of concerns)
+* No inline styles (CI enforced)
+* Global UI state management
+* Reusable component design
 
-Now that you have successfully run the app, let's modify it.
+---
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+## 🔮 Future Improvements
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+* ESLint + Prettier integration
+* Dark mode support
+* API error handling middleware
+* Push notifications (FCM)
+* Unit & E2E testing (Jest + Detox)
+* CI/CD build & deploy pipeline
 
-## Congratulations! :tada:
+---
 
-You've successfully run and modified your React Native App. :partying_face:
+## 👨‍💻 Author
 
-### Now what?
+**Syed Hammad**
+GitHub: https://github.com/syed-hammad23
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
->>>>>>> 5427534 (Initial commit)
